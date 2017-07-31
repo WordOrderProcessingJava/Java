@@ -33,7 +33,7 @@ public class Processor {
 
         //Initially No Files will be in INITIAL state.
         // After the first time ReadIt() executes which puts the file to INITIAL state
-        //Each Iteration moves the file until DONE state
+        //Each Iteration move the file until DONE state
 
         Set<WorkOrder> workOrderSetInitial = workOrderMap.get(Status.INITIAL);
         Set<WorkOrder> workOrderSetAssigned = workOrderMap.get(Status.ASSIGNED);
@@ -92,15 +92,15 @@ public class Processor {
         }
     }
 
-//    public static void main(String args[]) {
-//        Processor processor = new Processor();
-//
-//        //Initializing the map
-//        processor.workOrderMap.put(Status.INITIAL, new HashSet<>());
-//        processor.workOrderMap.put(Status.ASSIGNED, new HashSet<>());
-//        processor.workOrderMap.put(Status.IN_PROGRESS, new HashSet<>());
-//        processor.workOrderMap.put(Status.DONE, new HashSet<>());
-//
-//        processor.processWorkOrders();
-//    }
+    public static void main(String args[]) {
+        Processor processor = new Processor();
+
+        //Initializing the map
+        processor.workOrderMap.put(Status.INITIAL, new HashSet<>());
+        processor.workOrderMap.put(Status.ASSIGNED, new HashSet<>());
+        processor.workOrderMap.put(Status.IN_PROGRESS, new HashSet<>());
+        processor.workOrderMap.put(Status.DONE, new HashSet<>());
+
+        processor.processWorkOrders();
+    }
 }
