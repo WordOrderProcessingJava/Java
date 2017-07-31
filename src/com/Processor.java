@@ -31,36 +31,31 @@ public class Processor {
     private void moveIt() {
         // move work orders in map from one state to another
 
-        //Initially No Files will be in INITIAL state.
-        // After the first time ReadIt() executes which puts the file to INITIAL state
-        //Each Iteration move the file until DONE state
-
         Set<WorkOrder> workOrderSetInitial = workOrderMap.get(Status.INITIAL);
         Set<WorkOrder> workOrderSetAssigned = workOrderMap.get(Status.ASSIGNED);
         Set<WorkOrder> workOrderSetInProgress = workOrderMap.get(Status.IN_PROGRESS);
         Set<WorkOrder> workOrderSetDone = workOrderMap.get(Status.DONE);
 
-
         System.out.println("--------------------------");
         System.out.println("MAP (Before)" + workOrderMap);
 
-        if(workOrderSetInitial.size() > 0){
-            for (WorkOrder order : workOrderSetInitial) {
-                workOrderSetInitial.remove( order );
-                workOrderSetAssigned.add(order);
-                workOrderMap.put(Status.ASSIGNED, workOrderSetAssigned);
+        if(workOrderSetInitial.size() > 0) {
+            for (Iterator iterator = workOrderSetInitial.iterator(); iterator.hasNext(); ) {
+                workOrderSetAssigned.add( (WorkOrder) iterator.next() );
+                workOrderMap.put( Status.ASSIGNED, workOrderSetAssigned );
+                iterator.remove();
             }
         }else if(workOrderSetAssigned.size() > 0){
-            for (WorkOrder order : workOrderSetAssigned) {
-                workOrderSetAssigned.remove( order );
-                workOrderSetInProgress.add(order);
-                workOrderMap.put(Status.IN_PROGRESS, workOrderSetInProgress);
+            for (Iterator iterator = workOrderSetAssigned.iterator(); iterator.hasNext(); ) {
+                workOrderSetInProgress.add( (WorkOrder) iterator.next() );
+                workOrderMap.put( Status.IN_PROGRESS, workOrderSetInProgress );
+                iterator.remove();
             }
         }else if(workOrderSetInProgress.size() > 0){
-            for (WorkOrder order : workOrderSetInProgress) {
-                workOrderSetInProgress.remove( order );
-                workOrderSetDone.add(order);
-                workOrderMap.put(Status.DONE, workOrderSetDone);
+            for (Iterator iterator = workOrderSetInProgress.iterator(); iterator.hasNext(); ) {
+                workOrderSetDone.add( (WorkOrder) iterator.next() );
+                workOrderMap.put( Status.DONE, workOrderSetDone );
+                iterator.remove();
             }
         }
         System.out.println("--------------------------");
